@@ -1,0 +1,41 @@
+.error {
+  margin-left: 40%;
+}
+
+.loading {
+  size: 40;
+  margin-left: 45%;
+}
+
+/* --------------------pagination-------------------- */
+.pagination-list {
+  list-style: none;
+  display: inline-flex;
+  margin-left: 45%;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading {
+  animation: rotate 5s linear infinite;
+}
+
+/* ----------------------Form----------------------- */
+.Form{
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+  margin-left: 40%;
+}
+
+.post{
+  margin-top: 3%;
+}
