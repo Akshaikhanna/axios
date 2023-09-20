@@ -51,8 +51,8 @@ function Api() {
         name: name,
         email: email,
       })
-      .then((res) => setData([...data, res.data]))
-      .catch((error) => console.error(error));
+      .then((res) => setData([...data, res.data])) //update the data using setdata, spreading the existing data and appending the res.data
+      .catch((error) => console.error(error)); //for error message.
   };
 
   // pagination
@@ -111,23 +111,24 @@ function Api() {
             </Table>
             <div className="pagination">
               {/* pagination calculation  */}
-              {data.length > itemsPerPage && (
+              {data.length > itemsPerPage && ( //length of the data is greater than itemsperpage. If it is true condition render.
                 <ul className="pagination-list">
-                  {Array.from(
-                    { length: Math.ceil(data.length / itemsPerPage) },
-                    (_, i) => (
+                  {Array.from( //cretaes an new array
+                    { length: Math.ceil(data.length / itemsPerPage) }, //calculates how many pages are needed based on the number of items and items per page
+                    (_, i) => ( //_ is a placeholder for the array element
                       <li
                         key={i}
                         className={`page-item ${
                           currentPage === i + 1 ? "active" : ""
-                        }`}
+                        }`} //calculate the currentpage is equal to i+1, it adds to active else null
                       >
                         <Button
                           onClick={() => paginate(i + 1)}
                           variant="secondary"
                         >
                           {i + 1}
-                        </Button>
+                        </Button> 
+                        {/* when the button is clicked pagination function with the number  */}
                       </li>
                     )
                   )}
