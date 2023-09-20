@@ -22,9 +22,9 @@ function Api() {
   const auth = getAuth(firebaseApp);
 
   // For Pagination
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+  const indexOfLastItem = currentPage * itemsPerPage; //it displays the lastitem of currentpage
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage; //it displays the index of first item in currentPage
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem); // items falls within the range
 
   // fetch data from API using async and axios
   useEffect(() => {
@@ -113,9 +113,13 @@ function Api() {
               {/* pagination calculation  */}
               {data.length > itemsPerPage && ( //length of the data is greater than itemsperpage. If it is true condition render.
                 <ul className="pagination-list">
-                  {Array.from( //cretaes an new array
+                  {Array.from(
+                    //cretaes an new array
                     { length: Math.ceil(data.length / itemsPerPage) }, //calculates how many pages are needed based on the number of items and items per page
-                    (_, i) => ( //_ is a placeholder for the array element
+                    (
+                      _,
+                      i //_ is a placeholder for the array element
+                    ) => (
                       <li
                         key={i}
                         className={`page-item ${
@@ -127,7 +131,7 @@ function Api() {
                           variant="secondary"
                         >
                           {i + 1}
-                        </Button> 
+                        </Button>
                         {/* when the button is clicked pagination function with the number  */}
                       </li>
                     )
