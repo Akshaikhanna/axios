@@ -117,7 +117,7 @@ const Register = () => {
               />
             </Grid>
           </Grid>
-          <StyledButton type="submit" variant="contained">
+          <StyledButton type="submit" variant="contained">  
             Create
           </StyledButton>
         </StyledForm>

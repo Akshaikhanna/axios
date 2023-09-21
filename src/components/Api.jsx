@@ -1,4 +1,5 @@
 import "../styles/Api.css";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table, Navbar, Container, Button, Form, Nav } from "react-bootstrap";
@@ -8,6 +9,7 @@ import "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth, signOut } from "firebase/auth";
 import { firebaseConfig } from "./Auth";
+import { ToastContainer, toast } from "react-toastify";
 
 function Api() {
   const [data, setData] = useState([]);
@@ -31,11 +33,16 @@ function Api() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://jsonplaceholder.typicode.com/users"
+          "https://jsonplaceholder.typicode.com/usesrs"
         );
         setData(res.data);
         setLoading(false);
       } catch (error) {
+        toast.error("Error", {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 1000,
+          theme: "light",
+        });
         setError("Error fetching data");
         setLoading(false);
       }
@@ -52,7 +59,7 @@ function Api() {
         email: email,
       })
       .then((res) => setData([...data, res.data])) //update the data using setdata, spreading the existing data and appending the res.data
-      .catch((error) => console.error(error)); //for error message.
+      .catch((error) => toast.error("Error")); //for error message.
   };
 
   // pagination
@@ -73,6 +80,7 @@ function Api() {
 
   return (
     <>
+      <ToastContainer />
       <Navbar bg="secondary" data-bs-theme="dark" className="mx">
         <Container>
           <Navbar.Brand>Axios</Navbar.Brand>
@@ -117,18 +125,17 @@ function Api() {
                     //cretaes an new array
                     { length: Math.ceil(data.length / itemsPerPage) }, //calculates how many pages are needed based on the number of items and items per page
                     (
-                      _,
-                      i //_ is a placeholder for the array element
+                      _, //_ is a placeholder for the array element
+                      i //i is a index
                     ) => (
                       <li
                         key={i}
-                        className={`page-item ${
-                          currentPage === i + 1 ? "active" : ""
-                        }`} //calculate the currentpage is equal to i+1, it adds to active else null
+                        className={`page-item ${currentPage === i + 1}`} //calculate the currentpage is equal to i+1
                       >
                         <Button
                           onClick={() => paginate(i + 1)}
                           variant="secondary"
+                          className="pagination"
                         >
                           {i + 1}
                         </Button>
@@ -172,3 +179,5 @@ function Api() {
 }
 
 export default Api;
+
+//

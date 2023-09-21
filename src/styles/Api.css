@@ -28,7 +28,7 @@
 }
 
 /* ----------------------Form----------------------- */
-.Form{
+.Form {
   width: 300px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -36,6 +36,45 @@
   margin-left: 40%;
 }
 
-.post{
+.post {
   margin-top: 3%;
+}
+
+/* -----------pagination--------------- */
+/* Styles for Pagination */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+.page-item {
+  margin: 0 5px;
+}
+
+.page-item button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.page-item button:hover {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+/* Styles for Loading Icon */
+.loading {
+  display: block;
+  margin: 20px auto;
 }
